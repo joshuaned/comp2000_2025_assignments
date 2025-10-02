@@ -1,6 +1,6 @@
 import java.util.List;
 
-public class MoveLeft implements BotMover {
+public class MoveLeft implements MoveStrategy {
   @Override
   public Cell chooseNextLoc(List<Cell> possibleLocs, Actor currActor, List<Actor> otherActors) {
     Cell currLM = possibleLocs.get(0);

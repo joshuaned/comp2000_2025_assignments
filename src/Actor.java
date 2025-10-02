@@ -10,7 +10,7 @@ public abstract class Actor implements Pulse {
   boolean bot;
   int moves;
   int turns;
-  BotMover mover;
+  MoveStrategy mover;
 
   protected Actor(Cell inLoc, Color inColor, boolean isBot, int inMoves) {
     loc = inLoc;
