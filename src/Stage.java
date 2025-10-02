@@ -4,16 +4,14 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 
 public class Stage {
   Grid grid;
-  private List<Actor> listOfPlayers;
+  List<Actor> listOfPlayers;
   List<Cell> cellOverlay;
   Optional<Actor> playerInAction;
 
-  enum State {ChoosingActor, SelectingNewLocation, BotMoving}
-  State currentState;
+  GameState currentState;
   Beat beat;
 
   public Stage() {
@@ -21,7 +19,7 @@ public class Stage {
     listOfPlayers = new ArrayList<Actor>();
     cellOverlay = new ArrayList<Cell>();
     playerInAction = Optional.empty();
-    currentState = State.ChoosingActor;
+    currentState = new ChoosingActor();
     beat = new AnimationBeat();
   }
 
@@ -34,20 +32,7 @@ public class Stage {
 
   public void paint(Graphics g, Point mouseLoc) {
     // do we have bot moves to make?
-    if(currentState == State.BotMoving) {
-      for(Actor player: listOfPlayers) {
-        if(player.isBot()) {
-          List<Cell> possibleLocs = getClearRadius(player.loc, player.moves);
-          int moveBotChooses = (new Random()).nextInt(possibleLocs.size());
-          player.setLocation(possibleLocs.get(moveBotChooses));
-        }
-      }
-      currentState = State.ChoosingActor;
-      for(Actor player: listOfPlayers) {
-        player.turns = 1;
-      }
-    }
-
+    currentState.paint(g, this);
     grid.paint(g, mouseLoc);
     // Blue cell selection overlay with 50% transparency
     grid.paintOverlay(g, cellOverlay, new Color(0f, 0f, 1f, 0.5f));
@@ -56,7 +41,10 @@ public class Stage {
     for(Actor player: listOfPlayers) {
       player.paint(g);
     }
+    draw_sidepanel(g, mouseLoc);
+  }
 
+  private void draw_sidepanel(Graphics g, Point mouseLoc) {
     // lots of magic numbers here
     // they are used to calculate the coordinates of where to draw on the information panel
     final int hTab = 10;
@@ -105,45 +93,6 @@ public class Stage {
   }
 
   public void mouseClicked(int x, int y) {
-    switch(currentState) {
-      case ChoosingActor:
-        playerInAction = Optional.empty();
-        for(Actor player: listOfPlayers) {
-          if(player.loc.contains(x, y) && !player.isBot()) {
-            cellOverlay = grid.getRadius(player.loc, player.moves);
-            playerInAction = Optional.of(player);
-            currentState = State.SelectingNewLocation;
-          }
-        }
-        break;
-      case SelectingNewLocation:
-        Optional<Cell> clicked = Optional.empty();
-        for(Cell c: cellOverlay) {
-          if(c.contains(x, y)) {
-            clicked = Optional.of(c);
-          }
-        }
-        cellOverlay = new ArrayList<Cell>();
-        if(clicked.isPresent() && playerInAction.isPresent()) {
-          playerInAction.get().setLocation(clicked.get());
-          playerInAction.get().turns--;
-          int humansWithMovesLeft = 0;
-          for(Actor player: listOfPlayers) {
-            if(!player.isBot() && player.turns > 0) {
-              humansWithMovesLeft++;
-            }
-          }
-          if(humansWithMovesLeft > 0) {
-            currentState = State.ChoosingActor;
-          } else {
-            currentState = State.BotMoving;
-          }
-        }
-        break;
-      default:
-        // this state should never be reached
-        System.out.println(currentState);
-        break;
-    }
+    currentState.mouseClick(x, y, this);
   }
 }
