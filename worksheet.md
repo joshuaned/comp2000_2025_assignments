@@ -226,3 +226,19 @@ Can you modify `Stage` to fully implement the State Pattern?
 ![State Pattern Diagram](doc/StatePattern.png)
 
 Hint: you will need to refactor parts of the existing codebase into some new classes and adjust the existing `Stage` class.  Divide the task up so that each member of your group will work on a class each.
+
+## Week 9 Application Exercise
+
+In a similar vein to week 7, this week we would like you to look at the state of the program but this time we would like you to diagram the overall architecture and then analyse further opportunities for refactoring through the prism of Behaviour Parametrisation.
+
+### Task 19
+
+With this implementation of the State Pattern now added, draw a new picture of the inheritance hierarchy you have created.  You should (loosely) use [UML notation](http://umich.edu/~eecs381/handouts/UMLNotationSummary.pdf) for your diagram in the same way that you did for Task 9.
+
+### Task 20
+
+Compare your diagram to the one you made for Task 9.  Reflecting upon what techniques you've learned in the intervening weeks, describe what has changed since Task 9 (ie. compare the two diagrams using the language of Design Patterns and Behaviour Parametrisation).
+
+### Task 21
+
+Describe what further changes could you make so as to parametrise behaviour that exists in the application.  Again, describe these using the language of Design Patterns and Behaviour Parametrisation.
