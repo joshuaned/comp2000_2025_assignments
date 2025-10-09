@@ -193,10 +193,10 @@ Go through the updates to understand what we have done.  I.e. your job for this 
 
 So far we've looked at the Stategy Pattern and the Observer Pattern.  Now that you have reviewed the code see if you can recognise where Design Patterns have been used.
 
-  * Which interface, classes, and methods in our game correlate to the elements of the Strategy Pattern:
-    * ![Strategy Pattern Diagram](doc/StrategyPattern.png) ?
-  * Which interface, classes, and methods in our game correlate to the elements of the Obserbver Pattern:
-    * ![Strategy Pattern Diagram](doc/ObserverPattern.png) ?
+  * Which interface, classes, and methods in our game correlate to the elements of the Strategy Pattern ?:
+    * ![Strategy Pattern Diagram](doc/StrategyPattern.png)
+  * Which interface, classes, and methods in our game correlate to the elements of the Obserbver Pattern ?:
+    * ![Strategy Pattern Diagram](doc/ObserverPattern.png)
 
 ## Week 8 Application Exercise
 
@@ -242,3 +242,16 @@ Compare your diagram to the one you made for Task 9.  Reflecting upon what techn
 ### Task 21
 
 Describe what further changes could you make so as to parametrise behaviour that exists in the application.  Again, describe these using the language of Design Patterns and Behaviour Parametrisation.
+
+## Week 10 Application Exercise
+
+Last week we asked you to perform some code comprehension and diagramming.  This week exercise asks you to identify an opportunity for refactoring using a design pattern and for you and your group to implement that refactoring.
+
+
+### Task 22
+
+Can we make the strategy pattern that were added to the week 7 commit "disappear" with lambda expressions?   More concretely, can I get rid of the strategy interface and its subclasses and still have dynamic behaviour at run-time?   If so, implement it and discuss the pros and cons of this approach compared to a "real" strategy pattern.
+
+### Task 23
+
+Discuss with your team mates how Lambdas could be used to re-factor the other design patterns we introduced into the code base in Week 7.  Once you have identified one or more patterns that can be refactored using Lambdas, as a team choose one to refactor using Lambdas.  Implement your chosen refactoring and again, discuss the pros and cons of this approach compared to a "real" pattern.
