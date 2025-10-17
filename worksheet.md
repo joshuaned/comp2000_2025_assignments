@@ -255,3 +255,23 @@ Can we make the strategy pattern that were added to the week 7 commit "disappear
 ### Task 23
 
 Discuss with your team mates how Lambdas could be used to re-factor the other design patterns we introduced into the code base in Week 7.  Once you have identified one or more patterns that can be refactored using Lambdas, as a team choose one to refactor using Lambdas.  Implement your chosen refactoring and again, discuss the pros and cons of this approach compared to a "real" pattern.
+
+## Week 11 Application Exercise
+
+This week we will do some preparatory work towards your Assignment 2.
+
+### Task 24
+
+This week's first task is some more code comprehension: look at the source in `Client.java` and discuss with your team mates how the program works.
+
+### Task 25
+
+Change the URL to match the one in _Assignment 2_ (http://13.238.167.130/weather) - note that the URL starts with _http_ and **not** _https_.
+
+### Task 26
+
+Modify `Client` to print out a textual explanation of what each line of text received from the server means.
+
+### Task 27
+
+Although the code in `Client` makes some use of the _Java Streams API_ the heavy lifting is still being done via a while loop. Modify the code to use Stream operations and Lambdas.
