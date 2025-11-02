@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.util.Optional;
 
 public abstract class Button extends Rectangle {
     Plant plant;
@@ -32,9 +33,14 @@ public abstract class Button extends Rectangle {
     }
 
     // this allows the buttons to make new plants
-    public Plant makePlant(Rectangle x) {
+    public Optional<Plant> makePlant(Cell cell, int money) {
+        Optional<Plant> newPlant = Optional.empty();
+
         try {
-            return plant.getClass().getDeclaredConstructor(Rectangle.class).newInstance(x);
+            if(plant.waterPlant == cell.tile.isWater) {
+                return newPlant.of(plant.getClass().getDeclaredConstructor(Rectangle.class).newInstance(cell));
+            }
+            return newPlant;
         } catch (Exception e) {
             System.out.println("There was an issue creating a new instance of the plant.");
             return null;

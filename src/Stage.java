@@ -55,12 +55,8 @@ public class Stage {
   }
 
   public void mouseClicked(Point p) {
-    // toggle is clicked in button
-    Optional<Button> selectedButton = buttonAtPoint(p);
-    if(selectedButton.isPresent()){
-      Button button = selectedButton.get();
-      currentMode = button;
-    }
+    Optional<Cell> selected =  grid.cellAtPoint(p);
+    controls.mouseClicked(p, selected, money);
 
     // put plant into cell depending on currentMode
     // Optional<Cell> selected =  grid.cellAtPoint(p);
@@ -84,13 +80,13 @@ public class Stage {
     // }
   }
 
-  // see if a button is at point
-  public Optional<Button> buttonAtPoint(Point p) {
-    for(Button b: buttons) {
-      if (b.contains(p)) {
-        return Optional.of(b);
-      }
-    }
-    return Optional.empty();
-  }
+  // // see if a button is at point
+  // public Optional<Button> buttonAtPoint(Point p) {
+  //   for(Button b: buttons) {
+  //     if (b.contains(p)) {
+  //       return Optional.of(b);
+  //     }
+  //   }
+  //   return Optional.empty();
+  // }
 }
