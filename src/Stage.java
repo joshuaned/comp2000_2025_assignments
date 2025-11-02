@@ -9,10 +9,10 @@ import java.util.Optional;
 public class Stage {
   Grid grid;
   List<Actor> actors;
-  List<Button> buttons = new ArrayList<Button>();
   int money = 10;
-  
-  Button currentMode; // keep track of current button
+
+  // Create the controls object
+  Controls controls = new Controls();
 
   public Stage() {
     grid = new Grid();
@@ -20,13 +20,6 @@ public class Stage {
     actors.add(new Cat(grid.cellAtColRow(0, 0).get()));
     actors.add(new Dog(grid.cellAtColRow(0, 15).get()));
     actors.add(new Bird(grid.cellAtColRow(12, 9).get()));
-    
-    // create buttons and assign index
-    buttons.add(new CollectButton(815, 80));
-    buttons.add(new CarrotButton(740, 150));
-    buttons.add(new WaterCabbageButton(900, 150));
-
-    currentMode = buttons.get(0);
   }
 
   public void paint(Graphics g, Point mouseLoc) {
@@ -72,25 +65,25 @@ public class Stage {
     }
 
     // put plant into cell depending on currentMode
-    Optional<Cell> selected =  grid.cellAtPoint(p);
-    if(selected.isPresent()) {
-      Cell cell = selected.get();
-      if(!(currentMode instanceof CollectButton)) { // all other buttons will house instances of plant
-        // check if its a water plant
-        boolean tileCheck = (cell.tile.isWater && currentMode.plant.waterPlant || !cell.tile.isWater && !currentMode.plant.waterPlant);
-        if(tileCheck && money >= currentMode.plant.price) {
-          cell.plant = currentMode.makePlant(cell);
-          money -= cell.plant.price;
-          // push the growthBoost into plant object
-          cell.plant.growthMultiplier += cell.tile.growthBoost;
-        }
-      } else if (currentMode instanceof CollectButton && cell.hasPlant()) {
-        if (cell.plant.isGrown) {
-          money += cell.plant.sellValue;
-          cell.plant = null;
-        }
-      }
-    }
+    // Optional<Cell> selected =  grid.cellAtPoint(p);
+    // if(selected.isPresent()) {
+    //   Cell cell = selected.get();
+    //   if(!(currentMode instanceof CollectButton)) { // all other buttons will house instances of plant
+    //     // check if its a water plant
+    //     boolean tileCheck = (cell.tile.isWater && currentMode.plant.waterPlant || !cell.tile.isWater && !currentMode.plant.waterPlant);
+    //     if(tileCheck && money >= currentMode.plant.price) {
+    //       cell.plant = currentMode.makePlant(cell);
+    //       money -= cell.plant.price;
+    //       // push the growthBoost into plant object
+    //       cell.plant.growthMultiplier += cell.tile.growthBoost;
+    //     }
+    //   } else if (currentMode instanceof CollectButton && cell.hasPlant()) {
+    //     if (cell.plant.isGrown) {
+    //       money += cell.plant.sellValue;
+    //       cell.plant = null;
+    //     }
+    //   }
+    // }
   }
 
   // see if a button is at point
