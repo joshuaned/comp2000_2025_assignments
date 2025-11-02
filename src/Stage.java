@@ -30,7 +30,7 @@ public class Stage {
 
     // always visable UI
     g.drawString("Money: $" + String.valueOf(money), 740, 15);
-    g.drawString(String.valueOf(currentMode), 820, 15);
+    g.drawString(String.valueOf(controls.state), 820, 15);
 
     Optional<Cell> underMouse = grid.cellAtPoint(mouseLoc);
     if(underMouse.isPresent()) {
@@ -51,9 +51,7 @@ public class Stage {
       }
     }
 
-    for(Button b: buttons) {
-      b.paint(g, mouseLoc);
-    }
+    controls.paint(g, mouseLoc);
   }
 
   public void mouseClicked(Point p) {

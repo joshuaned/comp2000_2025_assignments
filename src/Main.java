@@ -27,7 +27,7 @@ public class Main extends JFrame {
 
       @Override
       public void mouseClicked(MouseEvent e) {
-        stage.mouseClicked(e.getPoint());
+        stage.controls.mouseClicked(e.getPoint());
       }
 
       @Override
