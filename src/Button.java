@@ -33,12 +33,13 @@ public abstract class Button extends Rectangle {
     }
 
     // this allows the buttons to make new plants
-    public Optional<Plant> makePlant(Cell cell, int money) {
+    public Optional<Plant> makePlant(Cell cell, Stage stage) {
         Optional<Plant> newPlant = Optional.empty();
 
         try {
-            if(plant.waterPlant == cell.tile.isWater) {
-                return newPlant.of(plant.getClass().getDeclaredConstructor(Rectangle.class).newInstance(cell));
+            if(plant.waterPlant == cell.tile.isWater && stage.money >= this.plant.price) {
+                stage.money -= this.plant.price;
+                newPlant = Optional.of(plant.getClass().getDeclaredConstructor(Rectangle.class).newInstance(cell));
             }
             return newPlant;
         } catch (Exception e) {

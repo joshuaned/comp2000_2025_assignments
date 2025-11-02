@@ -26,7 +26,7 @@ public class Controls {
         }
     }
 
-    public void mouseClicked(Point clickPos, Optional<Cell> selected, int money) {
+    public void mouseClicked(Point clickPos, Optional<Cell> selected, Stage stage) {
         // Check if a button is clicked on
         for(Button s: states) {
             if(s.contains(clickPos)) {
@@ -42,7 +42,7 @@ public class Controls {
                 return;
             }
 
-            Optional<Plant> plantOp = state.makePlant(cell, money);
+            Optional<Plant> plantOp = state.makePlant(cell, stage);
             if(plantOp.isPresent()) {
                 Plant plant = plantOp.get();
                 cell.plant = plant;

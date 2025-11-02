@@ -56,7 +56,7 @@ public class Stage {
 
   public void mouseClicked(Point p) {
     Optional<Cell> selected =  grid.cellAtPoint(p);
-    controls.mouseClicked(p, selected, money);
+    controls.mouseClicked(p, selected, this);
 
     // put plant into cell depending on currentMode
     // Optional<Cell> selected =  grid.cellAtPoint(p);
