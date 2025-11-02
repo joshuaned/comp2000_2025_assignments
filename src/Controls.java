@@ -38,7 +38,13 @@ public class Controls {
         if(selected.isPresent()) {
             Cell cell = selected.get();
 
+            // Collect mode
             if(state == states.get(0)) {
+                if(cell.hasPlant() && cell.plant.isGrown) {
+                    stage.money += cell.plant.sellValue;
+                    cell.plant = null;
+                    return;
+                }
                 return;
             }
 
@@ -47,6 +53,8 @@ public class Controls {
                 Plant plant = plantOp.get();
                 cell.plant = plant;
             }
+
+            
         }
     }
 }

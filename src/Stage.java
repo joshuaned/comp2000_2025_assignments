@@ -11,7 +11,7 @@ public class Stage {
   List<Actor> actors;
   int money = 10;
 
-  // Create the controls object
+  // State controller
   Controls controls = new Controls();
 
   public Stage() {
@@ -57,36 +57,5 @@ public class Stage {
   public void mouseClicked(Point p) {
     Optional<Cell> selected =  grid.cellAtPoint(p);
     controls.mouseClicked(p, selected, this);
-
-    // put plant into cell depending on currentMode
-    // Optional<Cell> selected =  grid.cellAtPoint(p);
-    // if(selected.isPresent()) {
-    //   Cell cell = selected.get();
-    //   if(!(currentMode instanceof CollectButton)) { // all other buttons will house instances of plant
-    //     // check if its a water plant
-    //     boolean tileCheck = (cell.tile.isWater && currentMode.plant.waterPlant || !cell.tile.isWater && !currentMode.plant.waterPlant);
-    //     if(tileCheck && money >= currentMode.plant.price) {
-    //       cell.plant = currentMode.makePlant(cell);
-    //       money -= cell.plant.price;
-    //       // push the growthBoost into plant object
-    //       cell.plant.growthMultiplier += cell.tile.growthBoost;
-    //     }
-    //   } else if (currentMode instanceof CollectButton && cell.hasPlant()) {
-    //     if (cell.plant.isGrown) {
-    //       money += cell.plant.sellValue;
-    //       cell.plant = null;
-    //     }
-    //   }
-    // }
   }
-
-  // // see if a button is at point
-  // public Optional<Button> buttonAtPoint(Point p) {
-  //   for(Button b: buttons) {
-  //     if (b.contains(p)) {
-  //       return Optional.of(b);
-  //     }
-  //   }
-  //   return Optional.empty();
-  // }
 }
