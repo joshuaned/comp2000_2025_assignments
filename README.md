@@ -19,9 +19,22 @@ By understanding and applying different design patterns, a programmer can quickl
 Design patterns also enable other programmers to better understand someone else's code, as they follow a generalised structure, which improves maintainability.
 Additionally, design patterns provide a framework of consistency within a programmer's code, generally improving code quality and reducing redundant code.
 
-## How I used design patterns in my game ##
-Decorator
-State
+### How I used design patterns in my game ###
+#### Decorator design pattern ####
+I utilised the decorator design pattern in creating my condition system for my tiles. Condition.java, Wet.java, Thunder.java, and Perfect.java.
+The 'conditions' all extend Condition.java, and use the abstract class growthCalc. I used the decorator pattern's structure to simplify returning a multiplier float.
+The idea is that for my decorators, some of them will always be something else too. This means, for example, that when something is windy, it's also wet, and when it is thundering, it's also windy and therefore also wet.
+The decorator design pattern allowed me to avoid excess code and an object explosion (meaning having tons of objects that just return the multiplier).
+I can simply call one of the decorators and get back a multiplier to pass to my plant for growth time.
+Below is my decorator structure, which includes the multiplier implications.
+wet (1f)
+windy(-0.5f) -> wet (1f)
+thunder(-1f) -> windy(-0.5) -> wet(1f)
+perfect(1.5f)
+
+This design pattern is a good fit for my program, as it allows me to easily add more decorators, such as a "Hail" condition, which could be linked to wet and have its multiplier adjusted accordingly.
+
+#### State design pattern ####
 
 ## Data streams and Lambdas ##
 lambda used in client
