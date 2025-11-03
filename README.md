@@ -35,6 +35,18 @@ perfect(1.5f)
 This design pattern is a good fit for my program, as it allows me to easily add more decorators, such as a "Hail" condition, which could be linked to wet and have its multiplier adjusted accordingly.
 
 #### State design pattern ####
+I utilised the state design pattern to redesign my button and control system, allowing for the easier addition of more buttons and clearer state changes.
+In Controls.java, I first create my states in an ArrayList of buttons. My buttons act as the states in this project, as they contain all the controlling/action code, including the creation of new plants.
+I then have the current state stored in the variable 'state'.
+
+I delegated my button painting to the state controller 'Controls.java' as this made the cleanest code for its purpose. I can easily call controls.paint in stage.
+There are currently three states in my program. Collect, Plant Carrot, and Plant Water Cabbage. CollectButton.java, CarrotButton.java, WaterCabbageButton.java.
+These states switch depending on which button has last been clicked; the current state is displayed in-game on the top right.
+When Controls.java is created as an object in Stage.java, the default state, being collect, is loaded.
+
+Mouse click position data is passed from the main to the stage and then to the controls, where it changes the states depending on what is clicked.
+The state design pattern massively improved the solution I had before, where I was using many "If" statements and the code was very messy. I have used the state design pattern to create a structure for my Controls.java class, allowing me to easily create it within my stage class.
+Through the state design pattern, it is now super intuitive to add new buttons to my game, they can just be added to the states arraylist, this makes my code more maintainable.
 
 ## Data streams and Lambdas ##
 lambda used in client
