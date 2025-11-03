@@ -37,7 +37,6 @@ public class Cell extends Rectangle {
   }
 
   public void placePlant(int x) {
-    //TODO: create planting system
     switch(x) {
       case 0 -> plant = new Carrot(this);
       default -> System.out.println("Plant type out of range");

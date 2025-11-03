@@ -22,6 +22,11 @@ public class Stage {
     actors.add(new Cat(grid.cellAtColRow(0, 0).get()));
     actors.add(new Dog(grid.cellAtColRow(0, 15).get()));
     actors.add(new Bird(grid.cellAtColRow(12, 9).get()));
+
+    // Start the client request stream
+    new Thread(() -> {
+      client.request();
+    }).start();
   }
 
   public void paint(Graphics g, Point mouseLoc) {

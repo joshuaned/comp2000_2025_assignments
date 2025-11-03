@@ -9,7 +9,7 @@ import java.nio.charset.StandardCharsets;
 
 public class Client {
 
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public void request() {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create("http://13.238.167.130/weather"))
