@@ -1,4 +1,4 @@
-## how to compile and run my program ##
+## How to compile and run my program ##
 This Java program was created using Java 21.
 To compile my program, I recommend using Visual Studio Code, but other IDEs should also work.
 The program must be run from Main.java, and all Java files should be kept together in the same folder.
@@ -6,6 +6,7 @@ The program must be run from Main.java, and all Java files should be kept togeth
 ## Game outline & Design info ##
 I chose to continue my game from assignment 1 and add the required rubric for assignment 2.
 By hovering over tiles, you can see various information about them. Their type is under money on the right, followed by the current hovered cell coordinate.
+
 Below this is the new feature, you can see the condition obtained from weather data and the growth rate.
 In this game, you can click one of the buttons to change the mode in the top right, then click in a cell to plant or collect.
 You should start by planting a carrot. When you plant it, its growth time will be affected by the cells' GrowthX.
@@ -25,6 +26,7 @@ I utilised the decorator design pattern in creating my condition system for my t
 The 'conditions' all extend Condition.java, and use the abstract class growthCalc. I used the decorator pattern's structure to simplify returning a multiplier float.
 The idea is that for my decorators, some of them will always be something else too. This means, for example, that when something is windy, it's also wet, and when it is thundering, it's also windy and therefore also wet.
 The decorator design pattern allowed me to avoid excess code and an object explosion (meaning having tons of objects that just return the multiplier).
+
 I can simply call one of the decorators and get back a multiplier to pass to my plant for growth time.
 Below is my decorator structure, which includes the multiplier implications.
 wet (1f)
@@ -53,6 +55,7 @@ Through the state design pattern, it is now super intuitive to add new buttons t
 Data streams are a sequence of data that can be processed with special operations. By utilising data streams, you simplify the code for data manipulation, resulting in more concise and readable code.
 With streams, you can filter certain parts of the stream; for example, you can have it only return words that start with a certain letter.
 You can accept data as streams and also convert arrays to data streams for easy filtering, mapping, or removing of things.
+
 ### How I used data streams in my game ###
 Within the Client.java class, which pulls all the weather data from the server, I accept the result from the website as an InputStream.
 I then use the stream map function and use a lambda to split the stream at the spaces by character. I can then easily push the pieces into my ClientData objects.
@@ -84,6 +87,7 @@ Rain means the tile will be wet, which increases growth by 1.
 Windy means it's rainy and windy, so windy takes away -0.5, but wet adds 1, resulting in a 0.5 increase.
 Windx means thunderstorm -1, which also brings wind and rain.
 Then, temp means the cell is the perfect temperature for growth, so it gets a 1.5 increase.
+
 These values are added to the tiles' existing growth rate, which is usually 1; for example, chalk ground has a growth rate of 0.1.
 Then, these values are passed into the plant when it is initially planted and multiplied by 1; the result is then added repeatedly to the plant's growth.
 A plant will only receive its growth rate when it is planted, so it is best to select a suitable plot.
