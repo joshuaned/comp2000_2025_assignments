@@ -6,8 +6,11 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Client {
+    List<ClientData> data = new ArrayList<>();
 
     public void request() {
         HttpClient client = HttpClient.newHttpClient();
@@ -21,10 +24,17 @@ public class Client {
                 .thenAccept(inputStream -> {
                     try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
                         reader.lines().map(s -> s.split(" ")).forEach(pieces -> {
-                            System.out.println("New weather report at: " + pieces[0] + " ");
-                            System.out.println("Condition: " + pieces[1] + " ");
-                            System.out.println("Location: ( " + pieces[2] + " , " + pieces[3] + " )");
-                            System.out.println("Strength: " + pieces[4] + " \n");
+                            // System.out.println("New weather report at: " + pieces[0] + " ");
+                            // System.out.println("Condition: " + pieces[1] + " ");
+                            // System.out.println("Location: ( " + pieces[2] + " , " + pieces[3] + " )");
+                            // System.out.println("Strength: " + pieces[4] + " \n");
+
+                            // consume values into ClientData
+                            data.add(new ClientData(pieces[1], pieces[4], pieces[2], pieces[3]));
+
+                            if(data.size() >= 50) {
+                                data.clear();
+                            }
                         });
                     } catch (IOException e) {
                         System.err.println("Error reading Server Side Event (SSE) stream: " + e.getMessage());
