@@ -1,27 +1,20 @@
+import java.awt.Point;
+
 public class ClientData {
-    int condition = 0;
-    float chance = 0f;
-    int x = 0;
-    int y = 0;
+    int condition;
+    float chance;
+    Point position;
 
     public ClientData(String con, String cha, String x, String y) {
         switch(con) {
-            case "rain":
-                condition = 0;
-                break;
-            case "windy":
-                condition = 1;
-                break;
-            case "windx":
-                condition = 2;
-                break;
-            case "temp":
-                condition = 3;
-                break;
+            case "rain" -> condition = 1;
+            case "windy" -> condition = 2;
+            case "windx" -> condition = 3;
+            case "temp" -> condition = 4;
         }
 
         chance = Float.parseFloat(cha);
-        this.x = Integer.parseInt(x);
-        this.y = Integer.parseInt(y);
+        position.x = Integer.parseInt(x);
+        position.y = Integer.parseInt(y);
     }
 }

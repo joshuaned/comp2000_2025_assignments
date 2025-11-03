@@ -14,7 +14,7 @@ public class Stage {
   // State controller
   Controls controls = new Controls();
   // Website client grabber
-  Client client = new Client();
+  Client client;
 
   public Stage() {
     grid = new Grid();
@@ -23,6 +23,7 @@ public class Stage {
     actors.add(new Dog(grid.cellAtColRow(0, 15).get()));
     actors.add(new Bird(grid.cellAtColRow(12, 9).get()));
 
+    client = new Client(grid);
     // Start the client request stream
     new Thread(() -> {
       client.request();

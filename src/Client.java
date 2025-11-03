@@ -11,6 +11,13 @@ import java.util.List;
 
 public class Client {
     List<ClientData> data = new ArrayList<>();
+    int dataThreshold = 50;
+    // Hold the current grid here - for changing the weather conditions
+    Grid grid;
+
+    public Client(Grid g) {
+        grid = g;
+    }
 
     public void request() {
         HttpClient client = HttpClient.newHttpClient();
@@ -32,7 +39,8 @@ public class Client {
                             // consume values into ClientData
                             data.add(new ClientData(pieces[1], pieces[4], pieces[2], pieces[3]));
 
-                            if(data.size() >= 50) {
+                            if(data.size() >= dataThreshold) {
+                                pushValues();
                                 data.clear();
                             }
                         });
@@ -41,5 +49,11 @@ public class Client {
                     }
                 })
                 .join(); // Wait for the async operation to complete
+    }
+
+    public void pushValues() {
+        for(ClientData e: data) {
+            
+        }
     }
 }
