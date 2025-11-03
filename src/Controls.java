@@ -55,7 +55,6 @@ public class Controls {
                 Plant plant = plantOp.get();
                 plant.growthMultiplier = cell.tile.growthRateVar;
                 cell.plant = plant;
-                System.out.println(plant.growthMultiplier);
             }
         }
     }
