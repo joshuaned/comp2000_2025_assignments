@@ -1,3 +1,5 @@
+## how to compile and run my program ##
+
 ## Game outline ##
 
 ## Design patterns used ##
