@@ -49,6 +49,19 @@ The state design pattern massively improved the solution I had before, where I w
 Through the state design pattern, it is now super intuitive to add new buttons to my game, they can just be added to the states arraylist, this makes my code more maintainable.
 
 ## Data streams and Lambdas ##
+### Why are data streams useful ###
+Data streams are a sequence of data that can be processed with special operations. By utilising data streams, you simplify the code for data manipulation, resulting in more concise and readable code.
+With streams, you can filter certain parts of the stream; for example, you can have it only return words that start with a certain letter.
+You can accept data as streams and also convert arrays to data streams for easy filtering, mapping, or removing of things.
+### How I used data streams in my game ###
+Within the Client.java class, which pulls all the weather data from the server, I accept the result from the website as an InputStream.
+I then use the stream map function and use a lambda to split the stream at the spaces by character. I can then easily push the pieces into my ClientData objects.
+Using a data stream here saved me from writing a longer and more convoluted for loop.
+Data streams enable faster code writing and cleaner-looking code.
+### Why are lambdas' useful ###
+
+### How I used lambdas' in my game ###
+
 lambda used in client
 lambda used for new thread
 lambda for push values in client
