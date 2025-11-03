@@ -7,8 +7,8 @@ public abstract class Tile {
     Cell cell;
     boolean isWater = false;
 
-    float growthRate = 0;
-    float growthRateVar = 0;
+    float growthRate = 1;
+    float growthRateVar;
 
     float chance = 0f;
     int condition = 0;
@@ -30,6 +30,7 @@ public abstract class Tile {
     public void updateGrowth(ClientData data) {
         if(data.chance > chance && data.condition != condition) {
             switch(data.condition) {
+                // Use the decorator pattern to return a new growthrate
                 case 1 -> growthRateVar = new Wet().growthCalc(growthRate);
                 case 2 -> growthRateVar = new Windy().growthCalc(growthRate);
                 case 3 -> growthRateVar = new Thunder().growthCalc(growthRate);

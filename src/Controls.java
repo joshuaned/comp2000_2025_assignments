@@ -54,7 +54,7 @@ public class Controls {
             if(plantOp.isPresent()) {
                 Plant plant = plantOp.get();
                 cell.plant = plant;
-                cell.plant.growthMultiplier += cell.tile.growthRate;
+                cell.plant.growthMultiplier = cell.tile.growthRate;
             }
         }
     }

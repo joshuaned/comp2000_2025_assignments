@@ -3,7 +3,7 @@ import java.awt.Point;
 public class ClientData {
     int condition;
     float chance;
-    Point position;
+    Point position = new Point(0, 0);
 
     public ClientData(String con, String cha, String x, String y) {
         switch(con) {

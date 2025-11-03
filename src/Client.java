@@ -40,7 +40,7 @@ public class Client {
                             data.add(new ClientData(pieces[1], pieces[4], pieces[2], pieces[3]));
 
                             if(data.size() >= dataThreshold) {
-                                pushValues();
+                                //pushValues();
                                 data.clear();
                             }
                         });

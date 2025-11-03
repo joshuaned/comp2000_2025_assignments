@@ -46,7 +46,7 @@ public abstract class Plant implements PlantInterface {
             return;
         }
 
-        growthTime += 1 * growthMultiplier;
+        growthTime = growthTime + (1 * growthMultiplier);
     }
 
     @Override
