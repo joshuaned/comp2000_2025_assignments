@@ -20,10 +20,12 @@ public class Client {
                 .thenApply(HttpResponse::body)
                 .thenAccept(inputStream -> {
                     try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
-                        String line;
-                        while ((line = reader.readLine()) != null) {
-                                System.out.println("Received: " + line);
-                        }
+                        reader.lines().map(s -> s.split(" ")).forEach(pieces -> {
+                            System.out.println("New weather report at: " + pieces[0] + " ");
+                            System.out.println("Condition: " + pieces[1] + " ");
+                            System.out.println("Location: ( " + pieces[2] + " , " + pieces[3] + " )");
+                            System.out.println("Strength: " + pieces[4] + " \n");
+                        });
                     } catch (IOException e) {
                         System.err.println("Error reading Server Side Event (SSE) stream: " + e.getMessage());
                     }

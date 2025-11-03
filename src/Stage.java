@@ -13,6 +13,8 @@ public class Stage {
 
   // State controller
   Controls controls = new Controls();
+  // Website client grabber
+  Client client = new Client();
 
   public Stage() {
     grid = new Grid();

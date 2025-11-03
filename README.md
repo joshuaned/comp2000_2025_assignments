@@ -3,6 +3,8 @@
 ## Game outline ##
 
 ## Design patterns used ##
+Decorator
+State
 
 ## Data streams and Lambdas ##
 
