@@ -13,9 +13,11 @@ public class Controls {
     public Controls() {
         // add the buttons as states
         states.add(new CollectButton(815, 80));
+        
         states.add(new CarrotButton(740, 150));
         states.add(new WaterCabbageButton(900, 150));
 
+        // default state is collect
         state = states.get(0);
     }
 
@@ -52,9 +54,8 @@ public class Controls {
             if(plantOp.isPresent()) {
                 Plant plant = plantOp.get();
                 cell.plant = plant;
+                cell.plant.growthMultiplier += cell.tile.growthRate;
             }
-
-            
         }
     }
 }

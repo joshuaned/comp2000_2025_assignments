@@ -18,6 +18,8 @@ public class Cell extends Rectangle {
     row = inRow;
 
     placeTiles();
+
+    
   }
 
   public void placeTiles() {
