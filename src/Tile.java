@@ -7,16 +7,16 @@ public abstract class Tile {
     Cell cell;
     boolean isWater = false;
 
-    float growthRate = 1;
-    float growthRateVar;
+    float growthRate = 1f;
+    float growthRateVar = growthRate;
 
     float chance = 0f;
     int condition = 0;
 
-    public Tile(Cell x, Color y) {
+    public Tile(Cell x, Color y, float growth) {
         cell = x;
         color = y;
-
+        growthRate = growth;
         growthRateVar = growthRate;
     }
 

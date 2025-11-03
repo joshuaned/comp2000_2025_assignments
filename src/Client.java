@@ -52,8 +52,6 @@ public class Client {
     }
 
     public void pushValues() {
-        for(ClientData e: data) {
-            
-        }
+        
     }
 }

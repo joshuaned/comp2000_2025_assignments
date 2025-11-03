@@ -46,6 +46,7 @@ public class Stage {
       g.setColor(Color.DARK_GRAY);
       g.drawString(String.valueOf(hoverCell.tile), 740, 30);
       g.drawString(String.valueOf(hoverCell.col) + String.valueOf(hoverCell.row), 740, 45);
+      g.drawString(String.valueOf(hoverCell.tile.growthRateVar), 740, 60);
 
       if(hoverCell.hasPlant()){
         g.drawString("Planted: " + String.valueOf(hoverCell.plant), 800, 30);
