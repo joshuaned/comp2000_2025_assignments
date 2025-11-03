@@ -10,8 +10,9 @@ public abstract class Tile {
     float growthRate = 1f;
     float growthRateVar = growthRate;
 
-    float chance = 0f;
+    float strength = 0f;
     int condition = 0;
+    String conditionName = "None";
 
     public Tile(Cell x, Color y, float growth) {
         cell = x;
@@ -28,14 +29,25 @@ public abstract class Tile {
 
     // determine growthmultipler
     public void updateGrowth(ClientData data) {
-        if(data.chance > chance && data.condition != condition) {
+        if(data.condition != condition) {
+            Condition temp = null;
+            condition = data.condition;
+            strength = data.strength;
+
             switch(data.condition) {
                 // Use the decorator pattern to return a new growthrate
-                case 1 -> growthRateVar = new Wet().growthCalc(growthRate);
-                case 2 -> growthRateVar = new Windy().growthCalc(growthRate);
-                case 3 -> growthRateVar = new Thunder().growthCalc(growthRate);
-                case 4 -> growthRateVar = new Perfect().growthCalc(growthRate);
+                case 1 -> temp = new Wet();
+                case 2 -> temp = new Windy();
+                case 3 -> temp = new Thunder();
+                case 4 -> temp = new Perfect();
             }
+
+            if(temp == null){
+                return;
+            }
+            
+            growthRateVar = temp.growthCalc(growthRate) + strength;
+            conditionName = temp.getClass().getSimpleName();
         }
     }
 

@@ -8,7 +8,7 @@ public class Cell extends Rectangle {
   static int size = 35;
   char col;
   int row;
-  int range = 3;
+  int range = 4;
   Tile tile; // generic
   Plant plant;
 
@@ -32,6 +32,7 @@ public class Cell extends Rectangle {
       case 0 -> tile = new Grass(this);
       case 1 -> tile = new Farmland(this);
       case 2 -> tile = new Water(this);
+      case 3 -> tile = new ChalkSoil(this);
       default -> System.out.println("Tile type out of range");
     }
   }

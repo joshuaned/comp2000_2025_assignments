@@ -46,7 +46,8 @@ public class Stage {
       g.setColor(Color.DARK_GRAY);
       g.drawString(String.valueOf(hoverCell.tile), 740, 30);
       g.drawString(String.valueOf(hoverCell.col) + String.valueOf(hoverCell.row), 740, 45);
-      g.drawString(String.valueOf(hoverCell.tile.growthRateVar), 740, 60);
+      g.drawString("Condition: " + hoverCell.tile.conditionName, 740, 60);
+      g.drawString("GrowthX: " + String.valueOf(hoverCell.tile.growthRateVar), 850, 60);
 
       if(hoverCell.hasPlant()){
         g.drawString("Planted: " + String.valueOf(hoverCell.plant), 800, 30);
@@ -66,26 +67,5 @@ public class Stage {
   public void mouseClicked(Point p) {
     Optional<Cell> selected =  grid.cellAtPoint(p);
     controls.mouseClicked(p, selected, this);
-
-    // put plant into cell depending on currentMode
-    // Optional<Cell> selected =  grid.cellAtPoint(p);
-    // if(selected.isPresent()) {
-    //   Cell cell = selected.get();
-    //   if(!(currentMode instanceof CollectButton)) { // all other buttons will house instances of plant
-    //     // check if its a water plant
-    //     boolean tileCheck = (cell.tile.isWater && currentMode.plant.waterPlant || !cell.tile.isWater && !currentMode.plant.waterPlant);
-    //     if(tileCheck && money >= currentMode.plant.price) {
-    //       cell.plant = currentMode.makePlant(cell);
-    //       money -= cell.plant.price;
-    //       // push the growthBoost into plant object
-    //       cell.plant.growthMultiplier += cell.tile.growthBoost;
-    //     }
-    //   } else if (currentMode instanceof CollectButton && cell.hasPlant()) {
-    //     if (cell.plant.isGrown) {
-    //       money += cell.plant.sellValue;
-    //       cell.plant = null;
-    //     }
-    //   }
-    // }
   }
 }

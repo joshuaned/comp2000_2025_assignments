@@ -2,7 +2,7 @@ import java.awt.Point;
 
 public class ClientData {
     int condition;
-    float chance;
+    float strength;
     Point position = new Point(0, 0);
 
     public ClientData(String con, String cha, String x, String y) {
@@ -13,7 +13,7 @@ public class ClientData {
             case "temp" -> condition = 4;
         }
 
-        chance = Float.parseFloat(cha);
+        strength = Float.parseFloat(cha);
         position.x = Integer.parseInt(x);
         position.y = Integer.parseInt(y);
     }

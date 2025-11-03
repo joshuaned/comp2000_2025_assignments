@@ -8,10 +8,12 @@ import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Client {
     List<ClientData> data = new ArrayList<>();
-    int dataThreshold = 50;
+    int dataThreshold = 100;
+    int chance = 3; // this determines how likely it is for a weather condition to take a cell
     // Hold the current grid here - for changing the weather conditions
     Grid grid;
 
@@ -31,17 +33,13 @@ public class Client {
                 .thenAccept(inputStream -> {
                     try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
                         reader.lines().map(s -> s.split(" ")).forEach(pieces -> {
-                            // System.out.println("New weather report at: " + pieces[0] + " ");
-                            // System.out.println("Condition: " + pieces[1] + " ");
-                            // System.out.println("Location: ( " + pieces[2] + " , " + pieces[3] + " )");
-                            // System.out.println("Strength: " + pieces[4] + " \n");
-
                             // consume values into ClientData
                             data.add(new ClientData(pieces[1], pieces[4], pieces[2], pieces[3]));
 
+                            // check if grid is over the threshold
                             if(data.size() >= dataThreshold) {
-                                //pushValues();
-                                data.clear();
+                                pushValues(); // push 50 values into the checker lambda
+                                data.clear(); // flush the values
                             }
                         });
                     } catch (IOException e) {
@@ -52,6 +50,17 @@ public class Client {
     }
 
     public void pushValues() {
-        
+        data.forEach(cdat -> {
+            if(grid.cellAtColRow(cdat.position.x, cdat.position.y).isPresent()) {
+                // Decide if it takes the cell with a random num gen
+                Random random = new Random();
+                if(random.nextInt(chance) != 0) {
+                    return;
+                }
+
+                Cell cell = grid.cellAtColRow(cdat.position.x, cdat.position.y).get();
+                cell.tile.updateGrowth(cdat);
+            }
+        });
     }
 }

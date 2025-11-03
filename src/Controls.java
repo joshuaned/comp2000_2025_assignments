@@ -53,8 +53,9 @@ public class Controls {
             Optional<Plant> plantOp = state.makePlant(cell, stage);
             if(plantOp.isPresent()) {
                 Plant plant = plantOp.get();
+                plant.growthMultiplier = cell.tile.growthRateVar;
                 cell.plant = plant;
-                cell.plant.growthMultiplier = cell.tile.growthRate;
+                System.out.println(plant.growthMultiplier);
             }
         }
     }
