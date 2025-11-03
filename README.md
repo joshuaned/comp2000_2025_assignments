@@ -74,7 +74,27 @@ Since my client constantly requests data from the server as a stream, I decided 
 Lambdas are super useful in programming for simplifying code and maintaining readability, all important to good programming design
 
 ## How server data is used ##
+I interpreted the weather data as conditions for determining how fast the plants grow on certain tiles.
+Client.java receives the weather data under the request function and pushes it into an object called ClientData.java. This basically just converts the data into numerical values from strings and stores it.
+When the data arraylist containing all the ClientData objects reaches the threshold, which is set at 100, pushValues is triggered, which takes the position data from the weather stream and checks if it aligns with one of the cells.
+If it does, then it has a 1/3 chance of becoming a tile's current condition, which will affect its growth multiplier via the decorators.
+
+I interpreted the different weather conditions as follows.
+Rain means the tile will be wet, which increases growth by 1.
+Windy means it's rainy and windy, so windy takes away -0.5, but wet adds 1, resulting in a 0.5 increase.
+Windx means thunderstorm -1, which also brings wind and rain.
+Then, temp means the cell is the perfect temperature for growth, so it gets a 1.5 increase.
+These values are added to the tiles' existing growth rate, which is usually 1; for example, chalk ground has a growth rate of 0.1.
+Then, these values are passed into the plant when it is initially planted and multiplied by 1; the result is then added repeatedly to the plant's growth.
+A plant will only receive its growth rate when it is planted, so it is best to select a suitable plot.
+
+These weather conditions affect how fast the plant grows on certain plots, both positively and negatively.
+When hovering over a cell, you can also see on the right what weather condition it has and what the growth multiplier is for the tile.
+
 Rain = wet
 Windy = windy + wet
 Windx = Thunder + windy + wet
 temp = Perfect
+
+The float value provided is additionally added to the growth rate as an extra bonus, so there may be some perfect cells that are better than others.
+This is simply done by taking the string, converting it to a float, and passing it into the decorators as well.
