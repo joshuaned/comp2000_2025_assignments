@@ -58,13 +58,20 @@ Within the Client.java class, which pulls all the weather data from the server, 
 I then use the stream map function and use a lambda to split the stream at the spaces by character. I can then easily push the pieces into my ClientData objects.
 Using a data stream here saved me from writing a longer and more convoluted for loop.
 Data streams enable faster code writing and cleaner-looking code.
-### Why are lambdas' useful ###
 
-### How I used lambdas' in my game ###
+### Why are lambdas useful ###
+Lambdas are essentially functions without a name; they enable you to perform more complex code in fewer lines.
+They simplify many things in programming. For example, instead of using a for loop, you can just use forEach for something like an ArrayList.
+You can then easily put in commands like a function that will affect the passed value or do something else.
+This encourages better programming design, as code can be simplified and made more readable for both other programmers and yourself.
 
-lambda used in client
-lambda used for new thread
-lambda for push values in client
+### How I used lambdas in my game ###
+Within my game, I utilised lambdas to simplify code in a few places.
+Within Client.java, I used it to process my input stream and break it up into individual strings; this approach saved many lines of code.
+Also in Client.java under my pushValues function, I used a lambda to create a for loop to push conditions into tiles and plants. Using a lambda here makes it much more readable and reduces the lines of code again.
+Since my client constantly requests data from the server as a stream, I decided to open it in a separate thread. I created this separate thread using a lambda, which saved a few lines of code and simplified the code.
+
+Lambdas are super useful in programming for simplifying code and maintaining readability, all important to good programming design
 
 ## How server data is used ##
 Rain = wet
